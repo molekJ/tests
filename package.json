@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/molekJ/tests#readme",
   "dependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.17.9",
     "jest": "^28.0.3"
   }
 }
