@@ -1,44 +1,27 @@
-export const addition = (a, b) => {
-  if (typeof a === "undefined" || typeof b === "undefined") {
-    return undefined;
+export const correctSentence = (sentence) => {
+  const trimmedSentence = sentence.trim().replace(/ +/g, " ");
+
+  const disallowedList = ["!", "?", ",", ":", ";"];
+
+  const endsWithDisallowed = disallowedList.includes(
+    trimmedSentence[trimmedSentence.length - 1]
+  );
+
+  if (
+    trimmedSentence[trimmedSentence.length - 1] === "." ||
+    endsWithDisallowed
+  ) {
+    return (
+      trimmedSentence[0].toUpperCase() +
+      trimmedSentence.slice(1, trimmedSentence.length)
+    );
   }
 
-  if (typeof a !== "number" || typeof b !== "number") {
-    return NaN;
-  }
-
-  return a + b;
+  return (
+    trimmedSentence[0].toUpperCase() +
+    trimmedSentence.slice(1, trimmedSentence.length) +
+    "."
+  );
 };
 
-export const subtraction = (a, b) => {
-  if (typeof a === "undefined" || typeof b === "undefined") {
-    return undefined;
-  }
-
-  if (typeof a !== "number" || typeof b !== "number") {
-    return NaN;
-  }
-  return a - b;
-};
-
-export const multiplication = (a, b) => {
-  if (typeof a === "undefined" || typeof b === "undefined") {
-    return undefined;
-  }
-
-  if (typeof a !== "number" || typeof b !== "number") {
-    return NaN;
-  }
-  return a * b;
-};
-
-export const dividing = (a, b) => {
-  if (typeof a === "undefined" || typeof b === "undefined") {
-    return undefined;
-  }
-
-  if (typeof a !== "number" || typeof b !== "number") {
-    return NaN;
-  }
-  return a / b;
-};
+console.log(correctSentence("   ala   ma kota, a kot    ma Alę   "));
