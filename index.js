@@ -1,27 +1,13 @@
-export const correctSentence = (sentence) => {
-  const trimmedSentence = sentence.trim().replace(/ +/g, " ");
-
-  const disallowedList = ["!", "?", ",", ":", ";"];
-
-  const endsWithDisallowed = disallowedList.includes(
-    trimmedSentence[trimmedSentence.length - 1]
-  );
-
-  if (
-    trimmedSentence[trimmedSentence.length - 1] === "." ||
-    endsWithDisallowed
-  ) {
-    return (
-      trimmedSentence[0].toUpperCase() +
-      trimmedSentence.slice(1, trimmedSentence.length)
-    );
-  }
-
-  return (
-    trimmedSentence[0].toUpperCase() +
-    trimmedSentence.slice(1, trimmedSentence.length) +
-    "."
-  );
+export const welcomeUser = ({
+  name = "John",
+  surname = "Doe",
+  age = 30,
+  city = "Katowice",
+} = {}) => {
+  const validAnswer = `Witaj ${name} ${surname}! Czy dobrze pamiętam, że masz ${age} lat i mieszkasz w ${city}? Miło Cię znowu widzieć!`;
+  return validAnswer;
 };
 
-console.log(correctSentence("   ala   ma kota, a kot    ma Alę   "));
+console.log(
+  welcomeUser({ name: "John", surname: "Doe", city: "Katowice", age: 30 })
+);

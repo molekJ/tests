@@ -1,25 +1,32 @@
-import { correctSentence } from "..";
+import { welcomeUser } from "..";
 
-describe("Sprawdzanie zmiany pierwszej litery na dużą", () => {
-  test("Poprawia zdanie: 'hello world'", () => {
-    expect(correctSentence("hello world")).toBe("Hello world.");
+describe("Sprawdzanie poprawności powitań", () => {
+  test("Po podaniu wszystkich poprawnych danych, zwroci powitanie w poprawnym formacie", () => {
+    const user = {
+      name: "Jakub",
+      surname: "Molicki",
+      city: "Biała Podlaska",
+      age: 31,
+    };
+
+    const validAnswer = `Witaj Jakub Molicki! Czy dobrze pamiętam, że masz 31 lat i mieszkasz w Biała Podlaska? Miło Cię znowu widzieć!`;
+    expect(welcomeUser(user)).toBe(validAnswer);
   });
 
-  test("Poprawia zdanie: '   ala   ma kota, a kot    ma Alę   '", () => {
-    expect(correctSentence("   ala   ma kota, a kot    ma Alę   ")).toBe(
-      "Ala ma kota, a kot ma Alę."
-    );
+  test("Kiedy nie zostaną podane zadne informacje, zwroci powitanie z domyslnymi danymi", () => {
+    const validAnswer = `Witaj John Doe! Czy dobrze pamiętam, że masz 30 lat i mieszkasz w Katowice? Miło Cię znowu widzieć!`;
+    expect(welcomeUser()).toBe(validAnswer);
   });
 
-  test("Poprawia zdanie: '   to jest    zdanie bez kropki'", () => {
-    expect(correctSentence("to jest zdanie bez kropki")).toBe(
-      "To jest zdanie bez kropki."
-    );
-  });
+  test("Kiedy zostanie podana czesc wlasciwosci, zwroci powitanie z czesciowo domyslnymi danymi", () => {
+    const user = {
+      name: undefined,
+      surname: "Molicki",
+      city: "Biała Podlaska",
+      age: undefined,
+    };
 
-  test("Poprawia zdanie: '   to jest    zdanie bez kropki!!!'", () => {
-    expect(correctSentence("to jest zdanie bez kropki!!!")).toBe(
-      "To jest zdanie bez kropki!!!"
-    );
+    const validAnswer = `Witaj John Molicki! Czy dobrze pamiętam, że masz 30 lat i mieszkasz w Biała Podlaska? Miło Cię znowu widzieć!`;
+    expect(welcomeUser(user)).toBe(validAnswer);
   });
 });
